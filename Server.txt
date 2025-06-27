@@ -426,7 +426,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "zula.ir",
+              "address": "invidious.f5.si",
               "port": 2053,
               "users": [
                 {
@@ -599,7 +599,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "www.speedtest.net",
+              "address": "ytify.pp.ua",
               "port": 2053,
               "users": [
                 {
@@ -1103,7 +1103,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "zula.ir",
+              "address": "invidious.f5.si",
               "port": 8443,
               "users": [
                 {
@@ -1271,7 +1271,7 @@
         "settings": {
           "vnext": [
             {
-              "address": "www.speedtest.net",
+              "address": "ytify.pp.ua",
               "port": 8443,
               "users": [
                 {
@@ -1363,175 +1363,161 @@
     },
     "stats": {}
   },
-  {
-    "dns": {
-      "queryStrategy": "UseIP",
-      "servers": [
-        {
-          "address": "8.8.8.8",
-          "skipFallback": false
-        }
-      ],
-      "tag": "dns_out"
-    },
-    "inbounds": [
+{
+  "dns": {
+    "queryStrategy": "UseIP",
+    "servers": [
       {
-        "port": 10808,
-        "protocol": "socks",
-        "settings": {
-          "auth": "noauth",
-          "udp": true,
-          "userLevel": 8
-        },
-        "sniffing": {
-          "destOverride": [
-            "http",
-            "tls",
-            "quic",
-            "fakedns"
-          ],
-          "enabled": true
-        },
-        "tag": "socks"
-      },
-      {
-        "port": 10809,
-        "protocol": "http",
-        "settings": {
-          "userLevel": 8
-        },
-        "tag": "http"
+        "address": "8.8.8.8",
+        "skipFallback": false
       }
     ],
-    "log": {
-      "loglevel": "warning"
+    "tag": "dns_out"
+  },
+  "inbounds": [
+    {
+      "port": 10808,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "userLevel": 8
+      },
+      "sniffing": {
+        "destOverride": [
+          "http",
+          "tls",
+          "quic",
+          "fakedns"
+        ],
+        "enabled": true
+      },
+      "tag": "socks"
     },
-    "outbounds": [
-      {
-        "protocol": "vless",
-        "tag": "proxy",
-        "streamSettings": {
-          "network": "xhttp",
-          "realitySettings": {
-            "fingerprint": "chrome",
-            "publicKey": "l1vrQ4O8HRV7WFuD2TMsfJglM8uzfLhHdh-LDvsYvBs",
-            "serverName": "journalofbigdata.springeropen.com",
-            "shortId": "b5846a4ec6fb0a",
-            "show": false,
-            "spiderX": "/XYCKcbcUKUmdZZI"
-          },
-          "security": "reality",
-          "sockopt": {
-            "dialerProxy": "fragment",
-            "tcpKeepAliveIdle": 100,
-            "tcpMptcp": true,
-            "penetrate": true
-          },
-          "xhttpSettings": {
-            "headers": {},
-            "host": "",
-            "mode": "stream-one",
-            "noSSEHeader": false,
-            "path": "/7TCAcJrqNUEL5XrfQxkUZKWsC",
-            "scMaxBufferedPosts": 30,
-            "scMaxEachPostBytes": "1000000",
-            "scStreamUpServerSecs": "20-80",
-            "xPaddingBytes": "100-1000"
-          }
-        },
-        "settings": {
-          "vnext": [
-            {
-              "address": "95.217.180.183",
-              "port": 443,
-              "users": [
-                {
-                  "encryption": "none",
-                  "id": "6fea9b39-41ff-4500-a1ff-6f8a2dced7e0",
-                  "level": 8
-                }
-              ]
-            }
-          ]
-        }
+    {
+      "port": 10809,
+      "protocol": "http",
+      "settings": {
+        "userLevel": 8
       },
-      {
-        "protocol": "freedom",
-        "settings": {
-          "domainStrategy": "AsIs",
-          "noises": [],
-          "redirect": ""
+      "tag": "http"
+    }
+  ],
+  "log": {
+    "loglevel": "warning"
+  },
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "tag": "proxy",
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none",
+        "sockopt": {
+          "dialerProxy": "fragment",
+          "tcpKeepAliveIdle": 100,
+          "tcpMptcp": true,
+          "penetrate": true
         },
-        "tag": "direct"
-      },
-      {
-        "protocol": "blackhole",
-        "settings": {
-          "response": {
-            "type": "http"
-          }
-        },
-        "tag": "block"
-      },
-      {
-        "tag": "fragment",
-        "protocol": "freedom",
-        "settings": {
-          "domainStrategy": "AsIs",
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "0"
-          }
-        },
-        "streamSettings": {
-          "sockopt": {
-            "tcpKeepAliveIdle": 100,
-            "tcpMptcp": true,
-            "penetrate": true
+        "tcpSettings": {
+          "header": {
+            "type": "none"
           }
         }
       },
-      {
-        "tag": "noises",
-        "protocol": "freedom",
-        "settings": {
-          "domainStrategy": "AsIs",
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "10-16"
-            }
-          ]
-        }
-      }
-    ],
-    "policy": {
-      "levels": {
-        "8": {
-          "connIdle": 300,
-          "downlinkOnly": 1,
-          "handshake": 4,
-          "uplinkOnly": 1
-        }
-      },
-      "system": {
-        "statsOutboundDownlink": true,
-        "statsOutboundUplink": true
+      "settings": {
+        "vnext": [
+          {
+            "address": "95.217.180.183",
+            "port": 443,
+            "users": [
+              {
+                "id": "459ac5f0-5a81-482b-aecd-7fbf7056c922",
+                "security": "auto",
+                "level": 8
+              }
+            ]
+          }
+        ]
       }
     },
-    "remarks": "Reality",
-    "routing": {
-      "domainStrategy": "AsIs",
-      "rules": [
-        {
-          "network": "tcp,udp",
-          "outboundTag": "proxy",
-          "type": "field"
-        }
-      ]
+    {
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "AsIs",
+        "noises": [],
+        "redirect": ""
+      },
+      "tag": "direct"
     },
-    "stats": {}
-  }
+    {
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "http"
+        }
+      },
+      "tag": "block"
+    },
+    {
+      "tag": "fragment",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "AsIs",
+        "fragment": {
+          "packets": "tlshello",
+          "length": "100-200",
+          "interval": "0"
+        }
+      },
+      "streamSettings": {
+        "sockopt": {
+          "tcpKeepAliveIdle": 100,
+          "tcpMptcp": true,
+          "penetrate": true
+        }
+      }
+    },
+    {
+      "tag": "noises",
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "AsIs",
+        "noises": [
+          {
+            "type": "rand",
+            "packet": "10-20",
+            "delay": "10-16"
+          }
+        ]
+      }
+    }
+  ],
+  "policy": {
+    "levels": {
+      "8": {
+        "connIdle": 300,
+        "downlinkOnly": 1,
+        "handshake": 4,
+        "uplinkOnly": 1
+      }
+    },
+    "system": {
+      "statsOutboundDownlink": true,
+      "statsOutboundUplink": true
+    }
+  },
+  "remarks": "TCP",
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "network": "tcp,udp",
+        "outboundTag": "proxy",
+        "type": "field"
+      }
+    ]
+  },
+  "stats": {}
+}
 ]
