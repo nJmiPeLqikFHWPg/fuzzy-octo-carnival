@@ -2046,7 +2046,7 @@
         "statsOutboundUplink": true
       }
     },
-    "remarks": "eodouubl",
+    "remarks": "TCP",
     "routing": {
       "domainStrategy": "AsIs",
       "rules": [
